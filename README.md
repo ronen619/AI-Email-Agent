@@ -1,42 +1,65 @@
 # 📧 AI-Powered Gmail Agent
 
-סוכן AI חכם שמתממשק עם ה-Gmail API לניתוח, סיווג וסיכום אוטומטי של מיילים באמצעות מודלי Gemini. הפרויקט נועד להפוך את הניהול היומיומי של תיבת המייל ליעיל יותר, תוך הבנה עמוקה של הקשר (Context) ודחיפות.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue.svg" alt="Python Version">
+  <img src="https://img.shields.io/badge/AI-Gemini_2.5-orange.svg" alt="AI Model">
+  <img src="https://img.shields.io/badge/Status-Active-success.svg" alt="Status">
+</p>
+
+הסוכן החכם שמנהל לך את תיבת המייל. הפרויקט משלב **Gmail API** יחד עם **Gemini LLM** כדי לבצע אוטומציה חכמה: סיכום מיילים, סיווג דחיפות, וניהול משימות – כל זה מבוצע דרך ארכיטקטורת סוכן (Agentic Orchestration).
 
 ---
 
 ## 🏗️ ארכיטקטורת המערכת
-הסוכן מבוסס על תהליך של שליפת מידע גולמי (Raw Data), עיבודו באמצעות LLM, וביצוע החלטות מבוססות כלים (Tool Use).
+המערכת בנויה כסוכן עצמאי המשתמש ב-`Function Calling` כדי לבצע פעולות (Tools) בהתאם להקשר המייל.
 
 
 
 ---
 
-## ✨ יכולות עיקריות
-- **Agentic Orchestration:** שימוש ב-Function Calling המאפשר למודל להחליט באופן דינמי אילו כלים להפעיל (סיכום, סיווג, או ניסוח תגובה).
-- **חילוץ נתונים חכם:** טיפול במבני MIME מורכבים של אימיילים ופענוח נתונים בפורמט Base64.
-- **אוטומציה מבוססת בינה:** זיהוי אוטומטי של מיילים דחופים (Urgency Detection) והפרדתם מתוך עומס המידע.
-- **ניהול הרשאות מאובטח:** מימוש OAuth 2.0 למניעת חשיפת סיסמאות וגישה מוגבלת (Least Privilege).
+## ✨ יכולות הליבה
+- **🧠 Agentic Orchestration:** המודל לא רק "מדבר", הוא מחליט אילו כלים להפעיל (סיכום, סיווג, או ניסוח) בהתאם לתוכן.
+- **🛡️ אבטחה בראש סדר העדיפויות:** מימוש OAuth 2.0 המבטיח גישה מאובטחת ללא חשיפת פרטי אימות.
+- **⚡ אוטומציה חכמה:** זיהוי מובנה של מיילים דחופים (Urgency Detection) והפרדתם מרעש רקע.
+- **🛠️ גמישות:** תשתית מוכנה להוספת כלים נוספים (Calendar, Slack, Drive).
 
 ---
 
-## 🛠️ טכנולוגיות
-- **שפה:** Python 3.x
-- **בינה מלאכותית:** Google Gemini 2.5 Flash / Pro
-- **אינטגרציות:** Gmail API, Google Cloud Platform
-- **כלים:** Google Generative AI SDK, OAuthlib
+## 🚀 מדריך התקנה (Quick Start)
 
----
+### 1. הכנות ב-Google Cloud
+- צור פרויקט ב-[Google Cloud Console](https://console.cloud.google.com/).
+- הפעל את **Gmail API**.
+- צור `credentials.json` והצב אותו בתיקיית השורש של הפרויקט.
 
-## 🔒 אבטחה ופרטיות (Security First)
-פרויקט זה תוכנן תוך דגש על אבטחה. הקבצים הרגישים (כגון מפתחות API ו-Credentials) **אינם נכללים במאגר** ומוחרגים באמצעות קובץ `.gitignore`.
+### 2. התקנת תלויות
+התקן את כל הספריות הנדרשות בלחיצה אחת:
+```bash
+pip install -r requirements.txt
+3. הרצה
+הפעל את הסקריפט:
 
-* **איך להגדיר בצורה בטוחה:** יש ליצור קובץ `credentials.json` מקומי ולוודא שהוא אינו נדחף ל-GitHub.
+Bash
+python main.py
+בעת ההרצה הראשונה, יפתח דפדפן לאישור גישה לחשבון הג'ימייל שלך.
 
----
+🛠 טכנולוגיות
+שפה: Python 3.x
 
-## 🚀 איך להתחיל?
+מנוע AI: Google Gemini 2.5 Flash
 
-1. **שכפול המאגר:**
-   ```bash
-   git clone [https://github.com/YourUsername/AI-Email-Agent.git](https://github.com/YourUsername/AI-Email-Agent.git)
-   cd AI-Email-Agent
+API: Gmail API
+
+SDK: Google Generative AI SDK
+
+🛣️ מפת דרכים (Roadmap)
+[ ] אינטגרציה עם Google Calendar: יצירת אירועים ישירות מתוך מיילים רלוונטיים.
+
+[ ] התראות בזמן אמת: חיבור ל-Slack / Telegram לעדכונים דחופים.
+
+[ ] Serverless Deployment: העברת הסוכן לענן (Google Cloud Functions) לריצה אוטומטית 24/7.
+
+💡 למה הפרויקט הזה קיים?
+בניתי את הפרויקט הזה כדי להתמודד עם אתגר ה-"Information Overload". המטרה הייתה להפסיק להשתמש ב-AI כצ'אט-בוט בלבד, ולעבור לבניית מערכות מנהלות שיודעות לבצע פעולות בפועל בסביבה אמיתית.
+
+נבנה באהבה. מוזמנים לשלוח Issues או Pull Requests! 🤖
